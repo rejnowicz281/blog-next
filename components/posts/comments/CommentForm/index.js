@@ -1,5 +1,6 @@
 "use client";
 
+import SubmitButton from "@components/shared/SubmitButton";
 import css from "./index.module.css";
 
 export default function CommentForm({ action, postId }) {
@@ -19,9 +20,7 @@ export default function CommentForm({ action, postId }) {
                 <label htmlFor="body">Body</label>
                 <textarea className={css["body-input"]} id="body" name="body" />
             </div>
-            <button className={css.submit} type="submit">
-                Leave a comment
-            </button>
+            <SubmitButton className={css.submit} submitContent="Leave a comment" submittingContent="Submitting..." />
         </form>
     );
 }
