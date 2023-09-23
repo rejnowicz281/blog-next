@@ -16,6 +16,7 @@ export default async function PostPage({ params }) {
             <div className={css.createdAt}>{formatDate(post.createdAt)}</div>
             <hr />
             <div className={css.body}>{post.body}</div>
+            <hr />
             <Comments postId={params.id} />
         </div>
     );
