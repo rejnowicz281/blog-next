@@ -1,6 +1,7 @@
 import Comment from "@models/comment";
 import Post from "@models/post";
 import { connectToDB } from "@utils/database";
+import formatValidationError from "@utils/formatValidationError";
 import { revalidatePath } from "next/cache";
 
 export async function getPosts() {
@@ -43,14 +44,25 @@ export async function createPostComment(postId, formData) {
         post: postId,
     });
 
-    await comment.save();
+    try {
+        await comment.save();
 
-    revalidatePath(`posts/${postId}`);
+        revalidatePath(`posts/${postId}`);
 
-    const data = {
-        action: "createPostComment",
-        success: true,
-    };
-
-    return data;
+        const data = {
+            action: "createPostComment",
+            success: true,
+        };
+        console.log(data);
+        return data;
+    } catch (err) {
+        const validationError = formatValidationError(err);
+        const data = {
+            action: "createComment",
+            success: false,
+            errors: validationError,
+        };
+        console.error(data);
+        return data;
+    }
 }

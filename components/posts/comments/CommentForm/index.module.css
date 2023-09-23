@@ -22,3 +22,9 @@
     cursor: pointer;
     border: none;
 }
+
+.error {
+    font-size: 15px;
+    margin-top: 10px;
+    color: rgb(252, 136, 136);
+}
