@@ -1,0 +1,22 @@
+.body-input,
+.author-input {
+    width: 100%;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 18px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+.field {
+    margin: 15px 0;
+}
+
+.submit {
+    width: 100%;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}

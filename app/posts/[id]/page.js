@@ -1,4 +1,5 @@
 import { getPost } from "@actions/posts";
+import Comments from "@components/posts/comments/Comments";
 import formatDate from "@utils/formatDate";
 import Link from "next/link";
 import css from "./page.module.css";
@@ -15,6 +16,7 @@ export default async function PostPage({ params }) {
             <div className={css.createdAt}>{formatDate(post.createdAt)}</div>
             <hr />
             <div className={css.body}>{post.body}</div>
+            <Comments postId={params.id} />
         </div>
     );
 }

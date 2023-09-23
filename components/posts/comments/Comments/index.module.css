@@ -1,0 +1,24 @@
+.comments {
+    margin-bottom: 40px;
+}
+
+.comment {
+    margin-top: 40px;
+}
+
+.author {
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin-bottom: 5px;
+}
+
+.createdAt {
+    font-size: 12px;
+}
+
+.body {
+    margin-top: 5px;
+    font-size: 18px;
+}
