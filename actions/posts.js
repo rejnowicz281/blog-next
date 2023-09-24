@@ -20,7 +20,7 @@ export async function getPost(id) {
     await connectToDB();
 
     const post = await Post.findOne({
-        id,
+        _id: id,
         status: "Public",
     }).select("-status");
 
