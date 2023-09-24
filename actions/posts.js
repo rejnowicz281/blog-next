@@ -7,7 +7,11 @@ import { revalidatePath } from "next/cache";
 export async function getPosts() {
     await connectToDB();
 
-    const posts = await Post.find().sort({ createdAt: -1 }).select("title");
+    const posts = await Post.find({
+        status: "Public",
+    })
+        .sort({ createdAt: -1 })
+        .select("title");
 
     return posts;
 }
@@ -16,6 +20,8 @@ export async function getPost(id) {
     await connectToDB();
 
     const post = await Post.findById(id);
+
+    if (post?.status === "Draft") return null;
 
     return post;
 }
