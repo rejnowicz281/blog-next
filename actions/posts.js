@@ -19,9 +19,10 @@ export async function getPosts() {
 export async function getPost(id) {
     await connectToDB();
 
-    const post = await Post.findById(id);
-
-    if (post?.status === "Draft") return null;
+    const post = await Post.findOne({
+        id,
+        status: "Public",
+    }).select("-status");
 
     return post;
 }
