@@ -1,8 +1,10 @@
 import { getPost } from "@actions/posts";
-import Comments from "@components/posts/comments/Comments";
 import formatDate from "@utils/formatDate";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import css from "./page.module.css";
+
+const LazyComments = dynamic(() => import("@components/posts/comments/Comments"));
 
 export default async function PostPage({ params }) {
     const post = await getPost(params.id);
@@ -17,7 +19,7 @@ export default async function PostPage({ params }) {
             <hr />
             <div className={css.body}>{post.body}</div>
             <hr />
-            <Comments postId={params.id} />
+            <LazyComments postId={params.id} />
         </div>
     );
 }
