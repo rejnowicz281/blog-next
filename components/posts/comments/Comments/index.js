@@ -3,6 +3,8 @@ import formatDate from "@utils/formatDate";
 import CommentForm from "../CommentForm";
 import css from "./index.module.css";
 
+export const dynamic = "force-dynamic";
+
 export default async function Comments({ postId }) {
     const comments = await getPostComments(postId);
 
