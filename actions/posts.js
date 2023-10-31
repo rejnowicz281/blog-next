@@ -19,22 +19,19 @@ export async function getPosts() {
 export async function getPost(id) {
     await connectToDB();
 
-    const post = await Post.findOne({
-        _id: id,
-        status: "Public",
-    }).select("-status");
+    const [post, comments] = await Promise.all([
+        Post.findOne({
+            _id: id,
+            status: "Public",
+        }).select("-status"),
+        Comment.find({ post: id }).sort({
+            createdAt: -1,
+        }),
+    ]);
 
-    return post;
-}
+    const data = { ...post._doc, comments };
 
-export async function getPostComments(postId) {
-    await connectToDB();
-
-    const comments = await Comment.find({ post: postId }).sort({
-        createdAt: -1,
-    });
-
-    return comments;
+    return data;
 }
 
 export async function createPostComment(postId, formData) {

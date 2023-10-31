@@ -1,13 +1,9 @@
-import { createPostComment, getPostComments } from "@actions/posts";
+import { createPostComment } from "@actions/posts";
 import formatDate from "@utils/formatDate";
 import CommentForm from "../CommentForm";
 import css from "./index.module.css";
 
-export const dynamic = "force-dynamic";
-
-export default async function Comments({ postId }) {
-    const comments = await getPostComments(postId);
-
+export default async function Comments({ comments = [], postId }) {
     return (
         <div className={css.comments}>
             <h3>Discussion</h3>

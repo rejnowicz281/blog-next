@@ -1,16 +1,10 @@
-import { getPost, getPosts } from "@actions/posts";
+import { getPost } from "@actions/posts";
 import Comments from "@components/posts/comments/Comments";
 import formatDate from "@utils/formatDate";
 import Link from "next/link";
 import css from "./page.module.css";
 
-export async function generateStaticParams() {
-    const posts = await getPosts();
-
-    return posts.map((post) => ({
-        id: post.id,
-    }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function PostPage({ params }) {
     const post = await getPost(params.id);
@@ -25,7 +19,7 @@ export default async function PostPage({ params }) {
             <hr />
             <div className={css.body}>{post.body}</div>
             <hr />
-            <Comments postId={params.id} />
+            <Comments comments={post.comments} postId={params.id} />
         </div>
     );
 }
