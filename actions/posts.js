@@ -1,3 +1,5 @@
+"use server";
+
 import Comment from "@models/comment";
 import Post from "@models/post";
 import { connectToDB } from "@utils/database";
@@ -34,13 +36,12 @@ export async function getPost(id) {
     return data;
 }
 
-export async function createPostComment(postId, formData) {
-    "use server";
-
+export async function createPostComment(formData) {
     await connectToDB();
 
     const author = formData.get("author");
     const body = formData.get("body");
+    const postId = formData.get("post_id");
 
     const comment = new Comment({
         author,

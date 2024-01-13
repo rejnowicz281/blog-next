@@ -1,5 +1,5 @@
-import PageLoading from "@components/shared/PageLoading";
+import Loading from "@components/general/Loading";
 
-export default function Loading() {
-    return <PageLoading />;
+export default function PageLoading() {
+    return <Loading spinnerSize="70px" />;
 }

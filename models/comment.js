@@ -9,7 +9,7 @@ const commentSchema = new Schema(
         },
         body: {
             type: String,
-            required: [true, "Text is required"],
+            required: [true, "Body is required"],
             maxlength: 10000,
         },
         post: {

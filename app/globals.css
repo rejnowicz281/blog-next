@@ -1,9 +1,7 @@
-body {
-    background-color: rgb(28, 27, 34);
-    color: rgb(219, 223, 224);
-    font: 21px Arial, Helvetica, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-h2 {
-    margin: 0;
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
