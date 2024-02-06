@@ -1,9 +1,10 @@
 "use server";
 
-import Comment from "@models/comment";
-import Post from "@models/post";
-import { connectToDB } from "@utils/database";
-import formatValidationError from "@utils/formatValidationError";
+import Comment from "@/models/comment";
+import Post from "@/models/post";
+import { connectToDB } from "@/utils/database";
+import formatValidationError from "@/utils/format-validation-error";
+import { Error } from "mongoose";
 import { revalidatePath } from "next/cache";
 
 export async function getPosts() {
@@ -18,7 +19,7 @@ export async function getPosts() {
     return posts;
 }
 
-export async function getPost(id) {
+export async function getPost(id: string) {
     await connectToDB();
 
     const [post, comments] = await Promise.all([
@@ -36,7 +37,7 @@ export async function getPost(id) {
     return data;
 }
 
-export async function createPostComment(formData) {
+export async function createPostComment(formData: FormData) {
     await connectToDB();
 
     const author = formData.get("author");
@@ -60,7 +61,9 @@ export async function createPostComment(formData) {
         };
         console.log(data);
         return data;
-    } catch (err) {
+    } catch (err: any) {
+        if (!(err instanceof Error.ValidationError)) return err.message;
+
         const validationError = formatValidationError(err);
         const data = {
             action: "createComment",

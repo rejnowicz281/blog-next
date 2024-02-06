@@ -1,4 +1,4 @@
-const { Schema, models, model } = require("mongoose");
+import { Schema, model, models } from "mongoose";
 
 const commentSchema = new Schema(
     {
@@ -21,6 +21,14 @@ const commentSchema = new Schema(
     { timestamps: { createdAt: true, updatedAt: false } }
 );
 
+export type CommentDocument = {
+    _id: string;
+    author: string;
+    body: string;
+    post: string;
+    createdAt: string;
+};
+
 const Comment = models.Comment || model("Comment", commentSchema);
 
-module.exports = Comment;
+export default Comment;

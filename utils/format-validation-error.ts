@@ -1,5 +1,8 @@
-export default function formatValidationError(err) {
-    const formattedErrors = {};
+import { FormattedErrors } from "@/types/errors";
+import mongoose from "mongoose";
+
+export default function formatValidationError(err: mongoose.Error.ValidationError) {
+    const formattedErrors: FormattedErrors = {};
 
     Object.values(err.errors).forEach((val) => {
         const { message, path } = val;

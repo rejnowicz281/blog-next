@@ -1,4 +1,4 @@
-const { Schema, models, model } = require("mongoose");
+import { Schema, model, models } from "mongoose";
 
 const postSchema = new Schema(
     {
@@ -21,6 +21,14 @@ const postSchema = new Schema(
     { timestamps: { createdAt: true, updatedAt: false } }
 );
 
+export type PostDocument = {
+    _id: string;
+    title: string;
+    body: string;
+    status: "Draft" | "Public";
+    createdAt: string;
+};
+
 const Post = models.Post || model("Post", postSchema);
 
-module.exports = Post;
+export default Post;

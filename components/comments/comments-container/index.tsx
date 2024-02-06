@@ -1,7 +1,13 @@
-import formatDate from "@utils/formatDate";
-import CommentForm from "../CommentForm";
+import { CommentDocument } from "@/models/comment";
+import formatDate from "@/utils/format-date";
+import CommentForm from "../comment-form";
 
-export default async function Comments({ comments = [], postId }) {
+export type CommentsProps = {
+    comments: CommentDocument[];
+    postId: string;
+};
+
+export default async function Comments({ comments = [], postId }: CommentsProps) {
     return (
         <>
             <h3 className="text-2xl font-bold">Discussion</h3>

@@ -1,14 +1,19 @@
 "use client";
 
-import { createPostComment } from "@actions/posts";
-import InputErrors from "@components/general/InputErrors";
-import SubmitButton from "@components/general/SubmitButton";
+import { createPostComment } from "@/actions/posts";
+import InputErrors from "@/components/general/input-errors";
+import SubmitButton from "@/components/general/submit-button";
+import { FormattedErrors } from "@/types/errors";
 import { useState } from "react";
 
-export default function CommentForm({ postId }) {
-    const [errors, setErrors] = useState({});
+export type CommentFormProps = {
+    postId: string;
+};
 
-    async function handleAction(formData) {
+export default function CommentForm({ postId }: CommentFormProps) {
+    const [errors, setErrors] = useState<FormattedErrors>({});
+
+    async function handleAction(formData: FormData) {
         const res = await createPostComment(formData);
 
         if (!res.success) setErrors(res.errors);

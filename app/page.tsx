@@ -1,4 +1,4 @@
-import { getPosts } from "@actions/posts";
+import { getPosts } from "@/actions/posts";
 import Link from "next/link";
 
 export default async function Home() {
